@@ -8,6 +8,7 @@ function authentication(req, res, next) {
     return next();
   })
   } catch (e) {
+    res.statusCode = 500;
     return res.json({ status: "error", message: "Login please." });
   }
 }
