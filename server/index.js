@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: 'http://192.168.43.1:5173',
+  origin: 'https://mern-stack-ecommerce-ocb.netlify.app',
   credentials: true,
   optionsSuccessStatus: 200
 }));
