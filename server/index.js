@@ -7,7 +7,11 @@ const connectDB = require('./database');
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'http://192.168.43.1:5173',
+  credentials: true,
+  optionsSuccessStatus: 200
+}));
 app.use(require('cookie-parser')());
 app.disable('x-powered-by');
 app.use(express.json());

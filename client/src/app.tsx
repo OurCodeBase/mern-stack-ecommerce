@@ -1,6 +1,8 @@
 import { Home, Login, Register } from '@/pages'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import { Background } from '@/components'
+import { AuthContextProvider } from './context'
+import { useAuth } from './hooks/auth'
 
 const router = createBrowserRouter([
   { path: "/", element: <Home/> },
@@ -9,9 +11,9 @@ const router = createBrowserRouter([
 ])
 
 export default function App() {
-  return (
+  return <AuthContextProvider>
     <Background>
       <RouterProvider router={router}/>
     </Background>
-  )
+  </AuthContextProvider>
 }

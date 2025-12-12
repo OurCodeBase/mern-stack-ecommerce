@@ -27,6 +27,7 @@ app.post("/register", async (req, res) => {
     await user.save(user);
     return res.json({ status: "success", message: "Account creation success." })
   } catch (e) {
+    console.error(e.message);
     res.statusCode = 500;
     return res.json({ status: "error", message: "Account creation failed." })
   }
