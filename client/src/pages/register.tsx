@@ -13,6 +13,7 @@ export default function App() {
       data[option] = formData.get(option)?.toString() || "";
     })
     try {
+      setLoading(true);
       const req = await fetch(import.meta.env.VITE_BASE_URL + '/api/users/register', {
         method: "POST",
         headers: {
