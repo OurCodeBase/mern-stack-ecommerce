@@ -8,14 +8,23 @@ export default function App() {
   const { token } = useAuth();
   const [data, setData] = useState<Array<Product>>([])
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
+  const getData = async () => {
     const baseUrl = import.meta.env.VITE_BASE_URL;
-    fetch(baseUrl + "/api/products")
-    .then(req => req.json())
-    .then(res => {
-      setData(res.data);
+    try {
+      setLoading(true);
+      const req = await fetch(baseUrl + "/api/products", {
+        credentials: "include"
+      })
+      const res = await req.json()
+      if (res.data) setData(res.data);
+    } catch (e) {
+      if (e instanceof Error) alert(e.message);
+    } finally {
       setLoading(false);
-    })
+    }
+  }
+  useEffect(() => {
+    if (token) getData();
   }, [])
   if (!token) return <Navigate to="/login"/>
   if (loading) return (

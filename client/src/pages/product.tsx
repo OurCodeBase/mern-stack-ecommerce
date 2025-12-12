@@ -7,7 +7,9 @@ export default function App() {
   const { id } = useParams()
   const fetchData = async () => {
     try {
-      const req = await fetch(import.meta.env.VITE_BASE_URL + "/api/products/" + id);
+      const req = await fetch(import.meta.env.VITE_BASE_URL + "/api/products/" + id, {
+        credentials: "include"
+      });
       const res = await req.json()
       setProduct(res.data);
     } catch (e) {
