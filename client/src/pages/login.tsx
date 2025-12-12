@@ -25,11 +25,12 @@ export default function App() {
         body: JSON.stringify(data),
         credentials: 'include'
       })
+      const cookie = req.headers.get('Set-Cookie');
+      if (cookie) document.cookie = cookie;
       const res = await req.json()
       alert(res['message']);
-      if (res['status'] == 'success') {
-        console.log(document.cookie)
-        setToken(document.cookie);
+      if (res['status'] == 'success' && cookie) {
+        setToken(cookie);
         setTimeout(() => {
           navigate('/');
         }, 1000)
