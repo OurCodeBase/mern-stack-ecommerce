@@ -1,7 +1,6 @@
 import { Spinner } from "@/components";
-import { useAuth } from "@/hooks/auth";
 import { useState, type FormEvent } from "react"
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
   const [loading, setLoading] = useState(false);
